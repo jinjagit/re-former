@@ -1,0 +1,49 @@
+<!-- <form accept-charset="UTF-8" action="/user" method="post">
+ <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+ <input type="text" name="user[username]">
+ <label for="username"> Enter your username</label><br>
+ <input type="text" name="user[email]">
+ <label for="email"> Enter your email</label><br>
+ <input type="password" name="user[password]">
+ <label for="password"> Enter your password</label><br>
+ <input type="password" name="user[password_confirmation]">
+ <label for="password_confirmation"> Confirm your password</label><br>
+ <input type="submit" value="Submit">
+</form> -->
+
+<!-- <%= form_tag('/user') do %>
+ <%= label_tag(:username, 'Enter your username:') %>
+ <%= text_field_tag(:username) %><br>
+ <%= label_tag(:email, 'Enter your email:') %>
+ <%= text_field_tag(:email) %><br>
+ <%= label_tag(:password, 'Enter your password:') %>
+ <%= password_field_tag(:password) %><br>
+ <%= label_tag(:password_confirmation, 'Confirm your password:') %>
+ <%= password_field_tag(:password_confirmation) %><br>
+ <%= submit_tag('Submit') %>
+<% end %> -->
+
+<% if @user.errors.any? %>
+  <div id="error_messages" style="color:red">
+    <h3><%= pluralize(@user.errors.messages.count, "Error") %> found:</h3>
+    <ul>
+    <% @user.errors.messages.each do |message| %>
+      <li><%= "#{message[0].to_s.capitalize} #{message[1][0].to_s}" %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @user do |f| %>
+  <ul style="list-style: none;">
+    <li><%= f.label :username, 'Enter your username:' %></li>
+    <li><%= f.text_field :username, value: 'example_username' %></li>
+    <li><%= f.label :email, 'Enter your email:' %></li>
+    <li><%= f.text_field :email, value: 'example@example.com' %></li>
+    <li><%= f.label :password, 'Enter your password:' %></li>
+    <li><%= f.password_field :password %></li>
+    <li><%= f.label :password, 'Confirm your password:' %></li>
+    <li><%= f.password_field :password_confirmation %></li>
+    <li><%= f.submit "Submit" %></li>
+  </ul>
+<% end %>

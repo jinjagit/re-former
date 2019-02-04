@@ -1,0 +1,24 @@
+<% if @user.errors.any? %>
+  <div id="error_messages" style="color:red">
+    <h3><%= pluralize(@user.errors.messages.count, "Error") %> found:</h3>
+    <ul>
+    <% @user.errors.messages.each do |message| %>
+      <li><%= "#{message[0].to_s.capitalize} #{message[1][0].to_s}" %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @user do |f| %>
+  <ul style="list-style: none;">
+    <li><%= f.label :username, 'Enter your username:' %></li>
+    <li><%= f.text_field :username, value: 'example_username' %></li>
+    <li><%= f.label :email, 'Enter your email:' %></li>
+    <li><%= f.text_field :email, value: 'example@example.com' %></li>
+    <li><%= f.label :password, 'Enter your password:' %></li>
+    <li><%= f.password_field :password %></li>
+    <li><%= f.label :password, 'Confirm your password:' %></li>
+    <li><%= f.password_field :password_confirmation %></li>
+    <li><%= f.submit "Submit" %></li>
+  </ul>
+<% end %>
